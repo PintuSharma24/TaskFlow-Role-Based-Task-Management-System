@@ -1,0 +1,106 @@
+
+<!-- REASSIGN TASK FORM -->
+
+<section class="stat-card" id="reassignTaskSection"
+         style="display: none; margin-bottom: 25px;">
+
+    <h3>Reassign Task</h3>
+
+    <form id="reassignTaskForm">
+
+        <input type="hidden" id="reassignTaskId">
+
+        <label for="currentEmployee">Currently Assigned Employee</label>
+        <input type="text" id="currentEmployee" readonly>
+
+        <label for="newAssignedEmployee">Assign To Another Employee</label>
+        <select id="newAssignedEmployee" required>
+            <option value="">Select Employee</option>
+        </select>
+
+        <button type="submit" class="action-btn view-btn">
+            Confirm Reassignment
+        </button>
+
+        <button type="button" id="cancelReassignment"
+                class="action-btn deactivate-btn">
+            Cancel
+        </button>
+
+        <p id="reassignMessage" class="message"></p>
+
+    </form>
+</section>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Tasks | TaskFlow</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+
+<div class="dashboard-container">
+
+    <aside class="sidebar">
+        <h2>TaskFlow</h2>
+
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="employees.html">My Employees</a>
+            <a href="tasks.html" class="active">My Tasks</a>
+            <a href="create-task.html">Create Task</a>
+            <a href="task-history.html">Task History</a>
+        </nav>
+
+        <button id="logoutButton">Logout</button>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <h1>My Tasks</h1>
+            <p>Monitor and manage your team's tasks.</p>
+        </header>
+
+        <section class="stat-card">
+            <h3>Task Directory</h3>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Task Title</th>
+                            <th>Assigned Employee</th>
+                            <th>Priority</th>
+                            <th>Status</th>
+                            <th>Due Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="managerTasksTable">
+                        <tr>
+                            <td colspan="7">Loading tasks...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p id="tasksMessage" class="message"></p>
+        </section>
+
+    </main>
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/manager.js"></script>
+
+</body>
+</html>

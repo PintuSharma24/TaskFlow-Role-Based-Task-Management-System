@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Employees | TaskFlow</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+
+    <aside class="sidebar">
+        <h2 class="logo">TaskFlow</h2>
+
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="employees.html" class="active">My Employees</a>
+            <a href="tasks.html">My Tasks</a>
+            <a href="create-task.html">Create Task</a>
+            <a href="task-history.html">Task History</a>
+        </nav>
+
+        <button id="logoutButton" class="logout-btn">Logout</button>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <h1>My Employees</h1>
+                <p>Manage employees under your team.</p>
+            </div>
+
+            <button id="showCreateEmployeeButton"
+                    class="action-btn view-btn">
+                + Add Employee
+            </button>
+        </header>
+
+        <!-- CREATE EMPLOYEE FORM -->
+
+        <section id="createEmployeeForm"
+                 class="stat-card"
+                 style="display: none; margin-bottom: 25px;">
+
+            <h3>Create New Employee</h3>
+
+            <form id="employeeForm">
+
+                <label for="employeeName">Employee Name</label>
+                <input type="text" id="employeeName"
+                       minlength="2" maxlength="100" required>
+
+                <label for="employeeEmail">Email Address</label>
+                <input type="email" id="employeeEmail" required>
+
+                <label for="employeePassword">Password</label>
+                <input type="password" id="employeePassword"
+                       minlength="8" maxlength="128" required>
+
+                <br><br>
+
+                <button type="submit" class="action-btn view-btn">
+                    Create Employee
+                </button>
+
+                <button type="button" id="cancelEmployeeForm"
+                        class="action-btn deactivate-btn">
+                    Cancel
+                </button>
+
+                <p id="employeeFormMessage" class="message"></p>
+
+            </form>
+        </section>
+
+
+        <!-- EDIT EMPLOYEE FORM -->
+
+        <section id="editEmployeeForm"
+                 class="stat-card"
+                 style="display: none; margin-bottom: 25px;">
+
+            <h3>Edit Employee Details</h3>
+
+            <form id="employeeUpdateForm">
+
+                <input type="hidden" id="editEmployeeId">
+
+                <label for="editEmployeeName">Employee Name</label>
+                <input type="text" id="editEmployeeName"
+                       minlength="2" maxlength="100" required>
+
+                <label for="editEmployeeEmail">Email Address</label>
+                <input type="email" id="editEmployeeEmail" required>
+
+                <label for="editEmployeePassword">New Password</label>
+                <input type="password" id="editEmployeePassword"
+                       minlength="8" maxlength="128"
+                       placeholder="Leave blank to keep current password">
+
+                <br><br>
+
+                <button type="submit" class="action-btn view-btn">
+                    Save Changes
+                </button>
+
+                <button type="button" id="cancelEditEmployee"
+                        class="action-btn deactivate-btn">
+                    Cancel
+                </button>
+
+                <p id="editEmployeeMessage" class="message"></p>
+
+            </form>
+        </section>
+
+
+        <!-- EMPLOYEE DIRECTORY -->
+
+        <section class="stat-card">
+
+            <h3>Employee Directory</h3>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="managerEmployeesTable">
+                        <tr>
+                            <td colspan="5">Loading employees...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p id="managerEmployeesMessage" class="message"></p>
+
+        </section>
+
+    </main>
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/manager.js"></script>
+
+</body>
+</html>

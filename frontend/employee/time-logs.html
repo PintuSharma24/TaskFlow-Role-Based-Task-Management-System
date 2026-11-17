@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Time Logs | TaskFlow</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+
+<div class="dashboard-container">
+
+    <aside class="sidebar">
+        <h2>TaskFlow</h2>
+
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="my-tasks.html">My Tasks</a>
+            <a href="time-logs.html" class="active">My Time Logs</a>
+        </nav>
+
+        <button id="logoutButton">Logout</button>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <h1>My Time Logs</h1>
+            <p>Track your working hours and completed efforts.</p>
+        </header>
+
+        <section class="stat-card">
+
+            <h3>My Working Hours</h3>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Log ID</th>
+                            <th>Task ID</th>
+                            <th>Task Title</th>
+                            <th>Hours Worked</th>
+                            <th>Description</th>
+                            <th>Work Date</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="employeeTimeLogsTable">
+                        <tr>
+                            <td colspan="6">Loading time logs...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p id="employeeTimeLogsMessage" class="message"></p>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/employee.js"></script>
+
+</body>
+</html>

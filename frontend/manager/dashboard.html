@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manager Dashboard | TaskFlow</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+
+    <aside class="sidebar">
+        <h2 class="logo">TaskFlow</h2>
+
+        <nav>
+            <a href="dashboard.html" class="active">Dashboard</a>
+            <a href="employees.html">My Employees</a>
+            <a href="tasks.html">My Tasks</a>
+            <a href="create-task.html">Create Task</a>
+            <a href="task-history.html">Task History</a>
+        </nav>
+
+        <button id="logoutButton" class="logout-btn">
+            Logout
+        </button>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <h1>Manager Dashboard</h1>
+                <p>Manage your team and monitor task progress.</p>
+            </div>
+
+            <div id="managerName">Manager</div>
+        </header>
+
+        <section class="stats-grid">
+
+            <div class="stat-card">
+                <h3>Total Employees</h3>
+                <p id="totalEmployees">--</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Active Employees</h3>
+                <p id="activeEmployees">--</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Total Tasks</h3>
+                <p id="totalTasks">--</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Pending Tasks</h3>
+                <p id="pendingTasks">--</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>In Progress Tasks</h3>
+                <p id="inProgressTasks">--</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Completed Tasks</h3>
+                <p id="completedTasks">--</p>
+            </div>
+
+        </section>
+
+        <p id="managerMessage" class="message"></p>
+
+    </main>
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/manager.js"></script>
+
+</body>
+</html>

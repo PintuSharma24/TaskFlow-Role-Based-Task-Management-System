@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Details | TaskFlow</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+
+<div class="dashboard-container">
+
+    <aside class="sidebar">
+        <h2>TaskFlow</h2>
+
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="my-tasks.html" class="active">My Tasks</a>
+            <a href="time-logs.html">My Time Logs</a>
+        </nav>
+
+        <button id="logoutButton">Logout</button>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <h1>Task Details</h1>
+            <p>View your task information and update your progress.</p>
+        </header>
+
+        <section class="stat-card">
+
+            <h3>Task Information</h3>
+
+            <p><strong>Task ID:</strong> <span id="detailTaskId">Loading...</span></p>
+
+            <p><strong>Title:</strong> <span id="detailTaskTitle">Loading...</span></p>
+
+            <p><strong>Description:</strong></p>
+            <p id="detailTaskDescription">Loading...</p>
+
+            <p><strong>Priority:</strong> <span id="detailTaskPriority">Loading...</span></p>
+
+            <p><strong>Due Date:</strong> <span id="detailTaskDueDate">Loading...</span></p>
+
+            <p><strong>Current Status:</strong> <span id="detailTaskStatus">Loading...</span></p>
+
+        </section>
+
+        <section class="stat-card">
+
+            <h3>Update Task Status</h3>
+
+            <form id="updateTaskStatusForm">
+
+                <label for="newTaskStatus">Select New Status</label>
+
+                <select id="newTaskStatus" required>
+                    <option value="">Select Status</option>
+                    <option value="pending">Pending</option>
+                    <option value="in_progress">In Progress</option>
+                    <option value="completed">Completed</option>
+                </select>
+
+                <button type="submit" class="action-btn view-btn">
+                    Update Status
+                </button>
+
+                <p id="statusUpdateMessage" class="message"></p>
+
+            </form>
+
+        </section>
+
+        <section class="stat-card">
+
+            <h3>Log Working Hours</h3>
+
+            <form id="employeeTimeLogForm">
+
+                <label for="hoursWorked">Hours Worked</label>
+                <input
+                    type="number"
+                    id="hoursWorked"
+                    min="0.01"
+                    max="24"
+                    step="0.01"
+                    required
+                >
+
+                <label for="workDate">Work Date</label>
+                <input
+                    type="date"
+                    id="workDate"
+                    required
+                >
+
+                <label for="workDescription">Work Description</label>
+                <textarea
+                    id="workDescription"
+                    rows="4"
+                    placeholder="Describe the work you completed..."
+                    required
+                ></textarea>
+
+                <button type="submit" class="action-btn view-btn">
+                    Submit Time Log
+                </button>
+
+                <p id="timeLogMessage" class="message"></p>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/employee.js"></script>
+
+</body>
+</html>

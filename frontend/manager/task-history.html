@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task History | TaskFlow</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+
+<div class="dashboard-container">
+
+    <aside class="sidebar">
+        <h2>TaskFlow</h2>
+
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="employees.html">My Employees</a>
+            <a href="tasks.html">My Tasks</a>
+            <a href="create-task.html">Create Task</a>
+            <a href="task-history.html" class="active">Task History</a>
+        </nav>
+
+        <button id="logoutButton">Logout</button>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <h1>Task History</h1>
+            <p>Track task updates, progress and assignment history.</p>
+        </header>
+
+        <section class="stat-card">
+
+            <h3>Select Task</h3>
+
+            <label for="historyTaskSelect">Choose a Task</label>
+
+            <select id="historyTaskSelect">
+                <option value="">Select Task</option>
+            </select>
+
+            <button
+                type="button"
+                id="loadHistoryButton"
+                class="action-btn view-btn">
+                View History
+            </button>
+
+            <p id="historyMessage" class="message"></p>
+
+        </section>
+
+        <section class="stat-card">
+
+            <h3>Task Activity History</h3>
+
+            <div class="table-container">
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Event</th>
+                            <th>Details</th>
+                            <th>Date & Time</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="taskHistoryTable">
+                        <tr>
+                            <td colspan="4">
+                                Select a task to view its history.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/manager.js"></script>
+
+</body>
+</html>

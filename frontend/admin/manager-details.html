@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manager Details | TaskFlow</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+
+    <aside class="sidebar">
+        <h2 class="logo">TaskFlow</h2>
+
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="managers.html" class="active">Managers</a>
+            <a href="employees.html">Employees</a>
+        </nav>
+
+        <button id="logoutButton" class="logout-btn">Logout</button>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <h1>Manager Details</h1>
+                <p>View manager information and team members.</p>
+            </div>
+            <a href="managers.html">Back to Managers</a>
+        </header>
+
+        <section class="stat-card">
+            <h3>Manager Information</h3>
+            <div id="managerInfo">Loading manager details...</div>
+            <button id="editManagerButton" class="action-btn view-btn">
+    Edit Manager
+</button>
+
+<div id="editManagerForm" class="stat-card" style="display: none; margin-top: 20px;">
+
+    <h3>Edit Manager Information</h3>
+
+    <form id="managerUpdateForm">
+
+        <label for="editName">Manager Name</label>
+        <input
+            type="text"
+            id="editName"
+            required
+            minlength="2"
+            maxlength="100"
+        >
+
+        <label for="editEmail">Email Address</label>
+        <input
+            type="email"
+            id="editEmail"
+            required
+        >
+
+        <label for="editPassword">New Password</label>
+        <input
+            type="password"
+            id="editPassword"
+            minlength="8"
+            maxlength="128"
+            placeholder="Leave blank to keep current password"
+        >
+
+        <div style="margin-top: 20px;">
+            <button type="submit" class="action-btn view-btn">
+                Save Changes
+            </button>
+
+            <button
+                type="button"
+                id="cancelEditButton"
+                class="action-btn deactivate-btn"
+            >
+                Cancel
+            </button>
+        </div>
+
+        <p id="editManagerMessage" class="message"></p>
+
+    </form>
+</div>
+
+        </section>
+
+        <section class="stat-card" style="margin-top: 25px;">
+            <h3>Team Overview</h3>
+            <p id="totalEmployees">Total Employees: --</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="employeesTableBody">
+                        <tr>
+                            <td colspan="4">Loading employees...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p id="detailsMessage" class="message"></p>
+        </section>
+
+    </main>
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/admin.js"></script>
+
+</body>
+</html>

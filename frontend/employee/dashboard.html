@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Dashboard | TaskFlow</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <aside class="sidebar">
+
+        <h2>TaskFlow</h2>
+
+        <nav>
+            <a href="dashboard.html" class="active">Dashboard</a>
+            <a href="my-tasks.html">My Tasks</a>
+            <a href="time-logs.html">My Time Logs</a>
+        </nav>
+
+        <button id="logoutButton">Logout</button>
+
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <h1>Employee Dashboard</h1>
+            <p>Welcome to your personal workspace.</p>
+        </header>
+
+        <section class="stats-grid">
+
+            <div class="stat-card">
+                <h3>Total Tasks</h3>
+                <p id="employeeTotalTasks">0</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Pending Tasks</h3>
+                <p id="employeePendingTasks">0</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>In Progress</h3>
+                <p id="employeeProgressTasks">0</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Completed Tasks</h3>
+                <p id="employeeCompletedTasks">0</p>
+            </div>
+
+        </section>
+
+        <section class="stat-card">
+
+            <h3>My Profile</h3>
+
+            <p><strong>Name:</strong> <span id="employeeName">Loading...</span></p>
+
+            <p><strong>Email:</strong> <span id="employeeEmail">Loading...</span></p>
+
+            <p><strong>Role:</strong> Employee</p>
+
+        </section>
+
+        <section class="stat-card">
+
+            <h3>Recent Tasks</h3>
+
+            <div class="table-container">
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Task ID</th>
+                            <th>Task Title</th>
+                            <th>Priority</th>
+                            <th>Status</th>
+                            <th>Due Date</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="employeeRecentTasks">
+                        <tr>
+                            <td colspan="5">Loading tasks...</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/employee.js"></script>
+
+</body>
+</html>

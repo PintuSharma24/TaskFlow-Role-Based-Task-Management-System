@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employees | TaskFlow</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+
+    <aside class="sidebar">
+        <h2 class="logo">TaskFlow</h2>
+
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="managers.html">Managers</a>
+            <a href="employees.html" class="active">Employees</a>
+        </nav>
+
+        <button id="logoutButton" class="logout-btn">Logout</button>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <h1>All Employees</h1>
+                <p>Monitor employees across all managers.</p>
+            </div>
+        </header>
+
+        <section class="stat-card">
+            <h3>Employee Directory</h3>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Manager ID</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="employeesTableBody">
+                        <tr>
+                            <td colspan="5">Loading employees...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p id="employeesMessage" class="message"></p>
+        </section>
+
+    </main>
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/admin.js"></script>
+
+</body>
+</html>

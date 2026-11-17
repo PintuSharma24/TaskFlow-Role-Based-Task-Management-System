@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Task | TaskFlow</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+
+<div class="dashboard-container">
+
+    <aside class="sidebar">
+        <h2>TaskFlow</h2>
+
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="employees.html">My Employees</a>
+            <a href="tasks.html">My Tasks</a>
+            <a href="create-task.html" class="active">Create Task</a>
+            <a href="task-history.html">Task History</a>
+        </nav>
+
+        <button id="logoutButton">Logout</button>
+    </aside>
+
+    <main class="main-content create-task-page">
+
+        <header class="topbar">
+            <h1>Create New Task</h1>
+            <p>Assign a new task to one of your employees.</p>
+        </header>
+
+        <section class="stat-card">
+
+            <h3>Task Information</h3>
+
+            <form id="createTaskForm">
+
+                <label for="taskTitle">Task Title</label>
+                <input
+                    type="text"
+                    id="taskTitle"
+                    placeholder="Enter task title"
+                    minlength="3"
+                    maxlength="200"
+                    required
+                >
+
+                <label for="taskDescription">Task Description</label>
+                <textarea
+                    id="taskDescription"
+                    placeholder="Enter task description"
+                    rows="5"
+                    required
+                ></textarea>
+
+                <label for="assignedEmployee">Assign Employee</label>
+                <select id="assignedEmployee" required>
+                    <option value="">Select Employee</option>
+                </select>
+
+                <label for="taskPriority">Priority</label>
+                <select id="taskPriority" required>
+                    <option value="">Select Priority</option>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+
+                <label for="taskDueDate">Due Date</label>
+                <input
+                    type="date"
+                    id="taskDueDate"
+                    required
+                >
+
+                <button type="submit" class="action-btn view-btn">
+                    Create Task
+                </button>
+
+                <p id="createTaskMessage" class="message"></p>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/manager.js"></script>
+
+</body>
+</html>

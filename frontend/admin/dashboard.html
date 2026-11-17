@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | TaskFlow</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+
+    <aside class="sidebar">
+        <h2 class="logo">TaskFlow</h2>
+
+        <nav>
+            <a href="dashboard.html" class="active">Dashboard</a>
+            <a href="managers.html">Managers</a>
+            <a href="employees.html">Employees</a>
+        </nav>
+
+        <button id="logoutButton" class="logout-btn">Logout</button>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <h1>Admin Dashboard</h1>
+                <p>Monitor your task management system.</p>
+            </div>
+
+            <div id="adminName">Administrator</div>
+        </header>
+
+        <section class="stats-grid">
+
+            <div class="stat-card">
+                <h3>Total Managers</h3>
+                <p id="totalManagers">--</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Active Managers</h3>
+                <p id="activeManagers">--</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Total Employees</h3>
+                <p id="totalEmployees">--</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Total Tasks</h3>
+                <p id="totalTasks">--</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Pending Tasks</h3>
+                <p id="pendingTasks">--</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>In Progress Tasks</h3>
+                <p id="inProgressTasks">--</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Completed Tasks</h3>
+                <p id="completedTasks">--</p>
+            </div>
+
+        </section>
+
+        <p id="dashboardMessage" class="message"></p>
+
+    </main>
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/admin.js"></script>
+
+</body>
+</html>
