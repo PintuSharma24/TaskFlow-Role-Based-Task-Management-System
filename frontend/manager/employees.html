@@ -120,9 +120,30 @@
 
         <!-- EMPLOYEE DIRECTORY -->
 
+
         <section class="stat-card">
 
-            <h3>Employee Directory</h3>
+    <h3>Employee Directory</h3>
+
+    <!-- EMPLOYEE SORTING -->
+    <div style="display: flex; align-items: center; gap: 12px; margin: 15px 0 20px;">
+
+        <label for="employeeSort">
+            <strong>Sort Employees:</strong>
+        </label>
+
+        <select id="employeeSort"
+                style="padding: 10px; border: 1px solid #ccc; border-radius: 6px; min-width: 200px;">
+
+            <option value="name-asc">Name (A–Z)</option>
+            <option value="name-desc">Name (Z–A)</option>
+            <option value="email-asc">Email (A–Z)</option>
+            <option value="created_at-desc">Newest First</option>
+            <option value="created_at-asc">Oldest First</option>
+
+        </select>
+
+    </div>
 
             <div class="table-container">
                 <table>
@@ -145,6 +166,27 @@
             </div>
 
             <p id="managerEmployeesMessage" class="message"></p>
+                        <!-- SERVER-SIDE PAGINATION -->
+            <div class="pagination-container"
+                 style="display:flex; justify-content:center; align-items:center; gap:15px; margin-top:20px;">
+
+                <button id="previousEmployeePage"
+                        class="action-btn view-btn"
+                        disabled>
+                    Previous
+                </button>
+
+                <span id="employeePageInfo">
+                    Page 1 of 1
+                </span>
+
+                <button id="nextEmployeePage"
+                        class="action-btn view-btn"
+                        disabled>
+                    Next
+                </button>
+
+            </div>
 
         </section>
 
@@ -153,6 +195,6 @@
 
 <script src="../js/api.js"></script>
 <script src="../js/manager.js"></script>
-
+<script src="../js/chatbot.js"></script>
 </body>
 </html>

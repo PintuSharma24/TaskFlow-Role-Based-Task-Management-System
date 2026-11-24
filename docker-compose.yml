@@ -1,7 +1,7 @@
 
 services:
   postgres:
-    image: postgres:18
+    image: pgvector/pgvector:0.8.7-pg18-trixie
     container_name: task_management_db
     restart: unless-stopped
 

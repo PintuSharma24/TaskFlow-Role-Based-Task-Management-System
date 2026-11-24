@@ -69,3 +69,13 @@ class EmployeeUpdate(BaseModel):
     )
 
     is_active: bool | None = None
+
+
+class EmployeePaginationResponse(BaseModel):
+    """Paginated response containing employee records."""
+
+    items: list[EmployeeResponse]
+    total: int
+    page: int
+    limit: int
+    total_pages: int

@@ -8,7 +8,7 @@ from app.core.config import settings
 from app.database.base import Base
 
 # Import all models so Alembic can discover their tables
-from app.models import User, Task, TaskHistory, TimeLog
+from app.models import User, Task, TaskHistory, TimeLog, RAGDocument
 
 
 config = context.config

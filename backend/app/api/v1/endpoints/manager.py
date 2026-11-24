@@ -1,6 +1,6 @@
 
 from fastapi import APIRouter, Depends, HTTPException, status
-from sqlalchemy import select
+from sqlalchemy import select, func
 from sqlalchemy.orm import Session
 
 from app.api.deps import require_roles
@@ -10,6 +10,7 @@ from app.models.user import User
 from app.schemas.manager import ManagerCreate, ManagerResponse
 from app.schemas.manager import EmployeeCreate, EmployeeResponse
 from app.schemas.manager import EmployeeUpdate
+from app.schemas.manager import EmployeePaginationResponse
 
 from app.models.task import Task
 from app.schemas.task import TaskCreate, TaskResponse
@@ -132,24 +133,105 @@ def create_employee(
     return employee
 
 
+
 @router.get(
     "/employees",
-    response_model=list[EmployeeResponse]
+    response_model=EmployeePaginationResponse
 )
 def get_my_employees(
+    page: int = 1,
+    limit: int = 10,
+    sort_by: str = "name",
+    order: str = "asc",
     db: Session = Depends(get_db),
     current_manager: User = Depends(require_roles("manager"))
 ):
-    employees = db.scalars(
-        select(User)
+    # Validate pagination parameters
+    if page < 1:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Page must be greater than or equal to 1"
+        )
+
+    if limit < 1 or limit > 100:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Limit must be between 1 and 100"
+        )
+
+    # Allowed sorting fields
+    allowed_sort_fields = {
+        "name": User.name,
+        "email": User.email,
+        "created_at": User.created_at
+    }
+
+    # Validate sorting field
+    if sort_by not in allowed_sort_fields:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Invalid sort field. Use name, email, or created_at."
+        )
+
+    # Validate sorting order
+    if order not in ["asc", "desc"]:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Invalid sort order. Use asc or desc."
+        )
+
+    # Base query: only employees belonging to this Manager
+    employee_query = select(User).where(
+        User.role == "employee",
+        User.manager_id == current_manager.id
+    )
+
+    # Count total employees
+    total = db.scalar(
+        select(func.count())
+        .select_from(User)
         .where(
             User.role == "employee",
             User.manager_id == current_manager.id
         )
-        .order_by(User.id)
+    ) or 0
+
+    # Calculate total pages
+    total_pages = (total + limit - 1) // limit
+
+    
+    # Apply sorting
+    sort_column = allowed_sort_fields[sort_by]
+
+    if order == "asc":
+        employee_query = employee_query.order_by(
+            sort_column.asc(),
+            User.id.asc()
+        )
+    else:
+        employee_query = employee_query.order_by(
+            sort_column.desc(),
+            User.id.asc()
+        )
+
+    # Apply server-side pagination
+    employees = db.scalars(
+        employee_query
+        .offset((page - 1) * limit)
+        .limit(limit)
     ).all()
 
-    return employees
+
+    return {
+        "items": employees,
+        "total": total,
+        "page": page,
+        "limit": limit,
+        "total_pages": total_pages
+    }
+
+
+
 
 @router.get(
     "/employees/{employee_id}",

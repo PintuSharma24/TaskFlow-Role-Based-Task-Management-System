@@ -1,0 +1,72 @@
+
+<div id="taskflowChatbot">
+
+    <!-- Floating chatbot button -->
+    <button id="chatbotToggle"
+            class="chatbot-toggle"
+            type="button"
+            aria-label="Open TaskFlow AI Assistant">
+        <span class="chatbot-icon">🤖</span>
+    </button>
+
+    <!-- Chatbot window -->
+    <div id="chatbotWindow"
+         class="chatbot-window"
+         style="display: none;">
+
+        <!-- Header -->
+        <div class="chatbot-header">
+            <div class="chatbot-header-info">
+                <div class="chatbot-avatar">🤖</div>
+                <div>
+                    <h3>TaskFlow AI</h3>
+                    <span>Manager Assistant</span>
+                </div>
+            </div>
+
+            <button id="chatbotClose"
+                    type="button"
+                    aria-label="Close chatbot">
+                &times;
+            </button>
+        </div>
+
+        <!-- Messages -->
+        <div id="chatbotMessages" class="chatbot-messages">
+
+            <div class="chat-message bot-message">
+                <div class="message-avatar">🤖</div>
+
+                <div class="message-content">
+                    Hello! Welcome to TaskFlow AI.
+                    <br><br>
+                        I can help you understand your employees,
+                        tasks, performance and team activities.
+                    <br><br>
+                    What would you like to know?
+                    
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Input -->
+        <div class="chatbot-input-area">
+            <textarea
+                id="chatbotInput"
+                placeholder="Ask anything about your team..."
+                rows="1"></textarea>
+
+            <button id="chatbotSend"
+                    type="button"
+                    aria-label="Send message">
+                ➤
+            </button>
+        </div>
+
+        <div class="chatbot-footer">
+            Powered by TaskFlow AI
+        </div>
+
+    </div>
+</div>

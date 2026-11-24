@@ -1,4 +1,23 @@
 
+
+// Employee pagination and sorting state
+let managerEmployeesCurrentPage = 1;
+const managerEmployeesPageLimit = 10;
+
+let managerEmployeesSortBy = "name";
+let managerEmployeesSortOrder = "asc";
+
+
+// Fetch all employees when another Manager feature needs
+// the complete team rather than one directory page.
+async function getAllManagerEmployees() {
+    const response = await apiRequest(
+        "/managers/employees?page=1&limit=100"
+    );
+
+    return response.items || [];
+}
+
 document.addEventListener("DOMContentLoaded", () => {
 
     // Manager Dashboard page
@@ -11,6 +30,25 @@ document.addEventListener("DOMContentLoaded", () => {
         loadManagerEmployees();
     }
 
+    // Employee sorting dropdown
+const employeeSortSelect = document.getElementById("employeeSort");
+
+if (employeeSortSelect) {
+    employeeSortSelect.addEventListener("change", function () {
+
+        const selectedValue = this.value;
+        const [sortBy, sortOrder] = selectedValue.split("-");
+
+        managerEmployeesSortBy = sortBy;
+        managerEmployeesSortOrder = sortOrder;
+
+        // Reset to first page after changing sorting
+        managerEmployeesCurrentPage = 1;
+
+        loadManagerEmployees();
+    });
+}
+
     if (document.getElementById("managerTasksTable")) {
     loadManagerTasks();}
 
@@ -19,6 +57,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (document.getElementById("managerTimeLogsTable")) {
     loadManagerTimeLogs();}
+
+
 
 
     // Logout functionality
@@ -56,9 +96,9 @@ async function loadManagerDashboard() {
 
         // Fetch employees and tasks
         const [employees, tasks] = await Promise.all([
-            apiRequest("/managers/employees"),
-            apiRequest("/managers/tasks")
-        ]);
+             getAllManagerEmployees(),
+             apiRequest("/managers/tasks")
+    ]);
 
         // Employee statistics
         const totalEmployees = employees.length;
@@ -116,10 +156,29 @@ async function loadManagerDashboard() {
 /* Load employees belonging to the logged-in Manager */
 
 async function loadManagerEmployees() {
-    const tableBody = document.getElementById("managerEmployeesTable");
-    const message = document.getElementById("managerEmployeesMessage");
+
+    const tableBody = document.getElementById(
+        "managerEmployeesTable"
+    );
+
+    const message = document.getElementById(
+        "managerEmployeesMessage"
+    );
+
+    const pageInfo = document.getElementById(
+        "employeePageInfo"
+    );
+
+    const previousButton = document.getElementById(
+        "previousEmployeePage"
+    );
+
+    const nextButton = document.getElementById(
+        "nextEmployeePage"
+    );
 
     try {
+
         const user = JSON.parse(
             localStorage.getItem("user") || "null"
         );
@@ -129,26 +188,39 @@ async function loadManagerEmployees() {
             return;
         }
 
-        const employees = await apiRequest("/managers/employees");
+        tableBody.innerHTML = `
+            <tr>
+                <td colspan="5">Loading employees...</td>
+            </tr>
+        `;
+
+        const response = await apiRequest( `/managers/employees?page=${managerEmployeesCurrentPage}&limit=${managerEmployeesPageLimit}&sort_by=${managerEmployeesSortBy}&order=${managerEmployeesSortOrder}`
+);
+
+        const employees = response.items || [];
 
         tableBody.innerHTML = "";
 
         if (employees.length === 0) {
+
             tableBody.innerHTML = `
                 <tr>
                     <td colspan="5">No employees found.</td>
                 </tr>
             `;
-            return;
         }
 
         employees.forEach(employee => {
+
             const row = document.createElement("tr");
 
             row.innerHTML = `
                 <td>${employee.id}</td>
+
                 <td>${escapeHTML(employee.name)}</td>
+
                 <td>${escapeHTML(employee.email)}</td>
+
                 <td>
                     <span class="status-badge ${
                         employee.is_active
@@ -158,41 +230,73 @@ async function loadManagerEmployees() {
                         ${employee.is_active ? "Active" : "Inactive"}
                     </span>
                 </td>
+
                 <td>
                     <button
                         class="action-btn view-btn"
                         data-employee-id="${employee.id}">
                         View
                     </button>
+
                     <button
-
-                    class="action-btn ${employee.is_active ? 'deactivate-btn' : 'view-btn'}"
-                    data-status-id="${employee.id}"
-                    data-active="${employee.is_active}">
-                    ${employee.is_active ? 'Deactivate' : 'Reactivate'}
-
+                        class="action-btn ${
+                            employee.is_active
+                                ? "deactivate-btn"
+                                : "view-btn"
+                        }"
+                        data-status-id="${employee.id}"
+                        data-active="${employee.is_active}">
+                        ${
+                            employee.is_active
+                                ? "Deactivate"
+                                : "Reactivate"
+                        }
                     </button>
-
                 </td>
             `;
 
             tableBody.appendChild(row);
+
         });
 
-        message.textContent = "Employees loaded successfully.";
+        // Update pagination information
+        pageInfo.textContent =
+            `Page ${response.page} of ${response.total_pages} | Total Employees: ${response.total}`;
+
+        previousButton.disabled =
+            response.page <= 1;
+
+        nextButton.disabled =
+            response.page >= response.total_pages;
+
+        message.textContent =
+            "Employees loaded successfully.";
+
         message.style.color = "green";
 
     } catch (error) {
+
+        tableBody.innerHTML = `
+            <tr>
+                <td colspan="5">
+                    Unable to load employees.
+                </td>
+            </tr>
+        `;
+
         message.textContent = error.message;
         message.style.color = "red";
+
+        console.error(
+            "Employee pagination error:",
+            error
+        );
     }
 }
 
-/* Run only on Manager Employees page */
 
-if (document.getElementById("managerEmployeesTable")) {
-    document.addEventListener("DOMContentLoaded", loadManagerEmployees);
-}
+
+/* Run only on Manager Employees page */
 
 
 /* Helper function to safely display text */
@@ -959,3 +1063,26 @@ async function loadManagerTimeLogs() {
         console.error("Time logs error:", error);
     }
 }
+
+// Employee pagination button events
+
+document.addEventListener("click", function(event) {
+
+    if (event.target.id === "previousEmployeePage") {
+
+        if (managerEmployeesCurrentPage > 1) {
+
+            managerEmployeesCurrentPage--;
+
+            loadManagerEmployees();
+        }
+    }
+
+    if (event.target.id === "nextEmployeePage") {
+
+        managerEmployeesCurrentPage++;
+
+        loadManagerEmployees();
+    }
+
+});

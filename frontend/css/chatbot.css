@@ -1,0 +1,390 @@
+
+/* =====================================
+   TASKFLOW AI CHATBOT - ISOLATED STYLES
+===================================== */
+
+#taskflowChatbot {
+    font-family: Arial, sans-serif;
+}
+
+/* Floating button */
+
+#taskflowChatbot .chatbot-toggle {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50%;
+    background: #2563eb;
+    color: white;
+    font-size: 27px;
+    cursor: pointer;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.25);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+#taskflowChatbot .chatbot-toggle:hover {
+    background: #1d4ed8;
+    transform: scale(1.08);
+}
+
+/* Chatbot window */
+
+#taskflowChatbot .chatbot-window {
+    position: fixed;
+    right: 25px;
+    bottom: 100px;
+    width: 370px;
+    height: 520px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 35px rgba(0, 0, 0, 0.20);
+    overflow: hidden;
+    z-index: 9998;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+
+#taskflowChatbot .chatbot-header {
+    flex-shrink: 0;
+    background: #2563eb;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#taskflowChatbot .chatbot-header-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+#taskflowChatbot .chatbot-avatar {
+    width: 42px;
+    height: 42px;
+    background: white;
+    color: #2563eb;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 23px;
+    flex-shrink: 0;
+}
+
+#taskflowChatbot .chatbot-header h3 {
+    margin: 0;
+    font-size: 16px;
+    color: white;
+}
+
+#taskflowChatbot .chatbot-header span {
+    font-size: 12px;
+    opacity: 0.9;
+}
+
+#taskflowChatbot #chatbotClose {
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* Messages container */
+
+#taskflowChatbot .chatbot-messages {
+    flex: 1;
+    min-height: 0;
+    padding: 15px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #f1f5f9;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Individual message */
+
+#taskflowChatbot .chat-message {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+}
+
+#taskflowChatbot .message-avatar {
+    width: 30px;
+    height: 30px;
+    background: #dbeafe;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* Message bubble */
+
+#taskflowChatbot .chat-message .message-content {
+    display: block;
+    flex: 0 1 auto;
+    width: auto;
+    min-width: 0;
+    max-width: 85%;
+    height: auto;
+    min-height: 0;
+    padding: 11px 13px;
+    border-radius: 12px;
+    font-size: 13px;
+    line-height: 1.6;
+    background: white;
+    color: #1e293b;
+    text-align: left;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* Welcome message paragraphs */
+
+#taskflowChatbot .message-content p {
+    display: block;
+    margin: 0 0 10px 0;
+    padding: 0;
+    text-align: left;
+    line-height: 1.6;
+}
+
+#taskflowChatbot .message-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* User message */
+
+#taskflowChatbot .user-message {
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+}
+
+#taskflowChatbot .user-message .message-content {
+    background: #2563eb;
+    color: white;
+    margin-left: auto;
+    text-align: left;
+}
+
+/* Bot message */
+
+#taskflowChatbot .bot-message {
+    justify-content: flex-start;
+}
+
+#taskflowChatbot .bot-message .message-content {
+    text-align: left;
+}
+
+/* Input area */
+
+#taskflowChatbot .chatbot-input-area {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+    background: white;
+    border-top: 1px solid #e2e8f0;
+}
+
+#taskflowChatbot #chatbotInput {
+    flex: 1;
+    min-width: 0;
+    resize: none;
+    border: 1px solid #cbd5e1;
+    border-radius: 9px;
+    padding: 11px;
+    outline: none;
+    font-size: 13px;
+    font-family: Arial, sans-serif;
+    max-height: 90px;
+}
+
+#taskflowChatbot #chatbotInput:focus {
+    border-color: #2563eb;
+}
+
+#taskflowChatbot #chatbotSend {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 9px;
+    background: #2563eb;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#taskflowChatbot #chatbotSend:hover {
+    background: #1d4ed8;
+}
+
+#taskflowChatbot #chatbotSend:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Footer */
+
+#taskflowChatbot .chatbot-footer {
+    flex-shrink: 0;
+    text-align: center;
+    padding: 7px;
+    font-size: 10px;
+    color: #64748b;
+    background: white;
+}
+
+/* Mobile responsiveness */
+
+@media (max-width: 480px) {
+    #taskflowChatbot .chatbot-window {
+        right: 10px;
+        bottom: 85px;
+        width: calc(100vw - 20px);
+        height: min(520px, calc(100dvh - 110px));
+    }
+
+    #taskflowChatbot .chatbot-toggle {
+        right: 15px;
+        bottom: 15px;
+    }
+}
+
+
+/* FINAL FIX: Override conflicting dashboard text styles */
+
+#taskflowChatbot .chat-message .message-content {
+    display: block !important;
+    width: auto !important;
+    max-width: 85% !important;
+    text-align: left !important;
+    line-height: 1.6 !important;
+    white-space: pre-wrap !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+    height: auto !important;
+    min-height: 0 !important;
+}
+
+#taskflowChatbot .chat-message .message-content * {
+    text-align: left !important;
+    float: none !important;
+    transform: none !important;
+}
+
+#taskflowChatbot .chat-message.bot-message {
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+}
+
+#taskflowChatbot .chatbot-messages {
+    align-items: stretch !important;
+}
+
+#taskflowChatbot .chatbot-messages .message-content {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+
+
+/* =========================================
+   TASKFLOW CHATBOT - FINAL LAYOUT CORRECTION
+========================================= */
+
+#taskflowChatbot .chatbot-window {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 520px !important;
+    overflow: hidden !important;
+}
+
+/* Conversation area must take remaining space */
+#taskflowChatbot #chatbotMessages {
+    display: flex !important;
+    flex: 1 1 0 !important;
+    flex-direction: column !important;
+    min-height: 0 !important;
+    height: 0 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    align-items: stretch !important;
+}
+
+/* Message rows */
+#taskflowChatbot .chat-message {
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    align-items: flex-start !important;
+}
+
+/* Message bubbles */
+#taskflowChatbot .chat-message .message-content {
+    flex: 0 1 auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+    text-align: left !important;
+    white-space: pre-wrap !important;
+    overflow-wrap: anywhere !important;
+}
+
+/* Welcome message: don't preserve HTML indentation */
+#taskflowChatbot .bot-message .message-content {
+    white-space: normal !important;
+}
+
+/* Input stays at the bottom */
+#taskflowChatbot .chatbot-input-area {
+    flex: 0 0 auto !important;
+    position: relative !important;
+    background: white !important;
+}
+
+/* Footer stays below input */
+#taskflowChatbot .chatbot-footer {
+    flex: 0 0 auto !important;
+    position: relative !important;
+    background: white !important;
+}
+
+
+.message-content {
+    white-space: pre-wrap !important;
+    overflow-wrap: anywhere;
+}
+
+/* Fix chatbot close and reopen behavior */
+
+#chatbotWindow {
+    display: none;
+}
+
+#chatbotToggle {
+    display: flex;
+}
